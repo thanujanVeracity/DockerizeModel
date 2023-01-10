@@ -21,7 +21,7 @@ RUN wget --quiet https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_6
 
 # set path to conda
 ENV PATH /opt/conda/bin:$PATH
-
+RUN apt-get install libatlas-base-dev -y
 
 # setup conda virtual environment
 COPY ./environment.yml /tmp/requirements.yaml
@@ -31,7 +31,12 @@ RUN conda update conda \
 RUN echo "conda activate camera-seg" >> ~/.bashrc
 ENV PATH /opt/conda/envs/camera-seg/bin:$PATH
 ENV CONDA_DEFAULT_ENV $camera-seg
+RUN pip3 install torchvision
 
+RUN apt-get install ffmpeg libsm6 libxext6  -y
+RUN apt install libilmbase-dev libopenexr-dev libgstreamer1.0-dev libavcodec-dev libavformat-dev libswscale-dev libwebp-dev -y
+RUN pip3 install tqdm 
+RUN pip3 install seaborn
 COPY inference.py ./inference.py
 RUN python3 inference.py
 
