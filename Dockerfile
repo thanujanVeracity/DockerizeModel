@@ -17,9 +17,9 @@ RUN apt install libilmbase-dev libopenexr-dev libgstreamer1.0-dev libavcodec-dev
 RUN pip install tqdm 
 RUN pip install seaborn
 RUN pip install cython matplotlib tqdm scipy ipython ninja yacs opencv-python ffmpeg opencv-contrib-python Pillow scikit-image scikit-learn lmfit imutils pyyaml jupyterlab==3 
-
+RUN pip install gitpython
 COPY inference.py ./inference.py
-RUN python3 inference.py
+
 
 
 
