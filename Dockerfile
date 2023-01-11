@@ -1,6 +1,13 @@
 
 # Use nvidia/cuda image
 FROM ubuntu:latest
+# Create app directory
+RUN mkdir -p /usr/src/app
+
+# Change working dir to /usr/src/app
+WORKDIR /usr/src/app
+
+VOLUME /usr/src/app
 
 # install anaconda
 RUN apt-get update -y && apt-get upgrade -y
